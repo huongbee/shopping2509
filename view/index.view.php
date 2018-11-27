@@ -1,0 +1,8 @@
+<?php
+/**
+ * content home page
+ * 
+ */
+
+
+?>
