@@ -1,8 +1,1 @@
-<?php
-/**
- * content home page
- * 
- */
-
-
-?>
+<div>Home Page</div>
