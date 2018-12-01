@@ -7,9 +7,10 @@ class IndexController extends BaseController{
     function getHomePage(){
         $model = new IndexModel();
         $slide = $model->selectSlide();
-
+        $specialProduct = $model->selectSpecialProduct();
         $data = [
-            'slide'=>$slide
+            'slide'=>$slide,
+            'specialProduct'=>$specialProduct
         ];
         return $this->loadView('index',$data);
     }
