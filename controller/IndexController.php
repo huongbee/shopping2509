@@ -1,10 +1,17 @@
 <?php
 require_once 'BaseController.php';
+require_once 'model/IndexModel.php';
 
 class IndexController extends BaseController{
 
     function getHomePage(){
-        return $this->loadView('index');
+        $model = new IndexModel();
+        $slide = $model->selectSlide();
+
+        $data = [
+            'slide'=>$slide
+        ];
+        return $this->loadView('index',$data);
     }
 }
 
