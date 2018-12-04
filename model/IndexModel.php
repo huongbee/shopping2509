@@ -8,10 +8,28 @@ class IndexModel extends DBConnect{
         return $this->loadMoreRow($sql);
     }
     function selectSpecialProduct(){
-        $sql = 'SELECT * FROM products WHERE status=1 LIMIT 0,15';
+        $sql = 'SELECT p.*, u.url AS url
+                FROM products p
+                INNER JOIN page_url u
+                ON p.id_url = u.id
+                WHERE status=1 LIMIT 0,15';
         return $this->loadMoreRow($sql);
     }
 
+    function selectBestSeller(){
+        $sql = "SELECT p.*, sum(d.quantity) AS tongsl, u.url AS url
+                FROM products p
+                INNER JOIN bill_detail d
+                ON p.id = d.id_product
+                INNER JOIN page_url u
+                ON p.id_url = u.id
+                GROUP BY p.id
+                ORDER BY tongsl DESC
+                LIMIT 0,15";
+        return $this->loadMoreRow($sql);
+    }
+
+    //B1
 }
 
 

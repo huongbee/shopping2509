@@ -8,11 +8,16 @@ class IndexController extends BaseController{
         $model = new IndexModel();
         $slide = $model->selectSlide();
         $specialProduct = $model->selectSpecialProduct();
+        $bestSeller = $model->selectBestSeller();
+        // print_r($bestSeller); die;
+        //B2 
         $data = [
             'slide'=>$slide,
-            'specialProduct'=>$specialProduct
+            'specialProduct'=>$specialProduct,
+            'bestSeller'=>$bestSeller,
+            //B3
         ];
-        return $this->loadView('index',$data);
+        return $this->loadView('index','Trang chủ',$data);
     }
 }
 
