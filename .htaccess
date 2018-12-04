@@ -1,0 +1,15 @@
+RewriteEngine On
+
+
+
+#RewriteRule ^trang-chu$ index.php
+
+RewriteRule ^trang-chu$ single-product.php
+
+
+<Files "test.txt">
+deny from all
+</Files>
+
+ErrorDocument 403 /shop2509/403.html
+ErrorDocument 404 /shop2509/403.html
