@@ -740,6 +740,12 @@
     <!-- jquery js -->
     <script type="text/javascript" src="public/js/jquery.min.js"></script>
 
+    <script>
+        $(document).ready(function(){
+            $('.mega-menu-category').hide()
+        })
+    </script>
+
     <!-- bootstrap js -->
     <script type="text/javascript" src="public/js/bootstrap.min.js"></script>
 
