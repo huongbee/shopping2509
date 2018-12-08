@@ -1,4 +1,6 @@
 <?php
+include_once 'model/TypeProductModel.php';
+
 class BaseController {
 
     /**
@@ -8,6 +10,8 @@ class BaseController {
      * @return null 
      */
     function loadView(string $view='index', string $title='Shop 2509', array $data=[]){
+        $model = new TypeProductModel;
+        $categories = $model->selectCategories();
         include_once 'view/layout.view.php';
     }
 
