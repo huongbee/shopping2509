@@ -10,7 +10,7 @@ class TypeProductModel extends DBConnect{
                 ON u.id = c.id_url";
         return $this->loadMoreRow($sql);
     }
-    function selectProductByType($urlType){
+    function selectProductByType($urlType,$position=-1,$quantity=-1){
         $sql = "SELECT p.*, u2.url as url
                 FROM page_url u
                 INNER JOIN categories c
@@ -20,6 +20,9 @@ class TypeProductModel extends DBConnect{
                 INNER JOIN page_url u2
                 ON u2.id=p.id_url
                 WHERE u.url='$urlType'";
+        if($position>-1 && $quantity>-1){
+            $sql .= " LIMIT $position,$quantity";
+        }     
         return $this->loadMoreRow($sql);
     }
 
