@@ -1,10 +1,10 @@
 <?php 
 class Pager{
-	private $_totalItem;   //120   
-	private $_nItemOnPage; //12
-	private $_nPageShow ;  //7
-	private $_totalPage;   //10
-    private $_currentPage; //3
+	private $_totalItem;     
+	private $_nItemOnPage; 
+	private $_nPageShow ;  
+	private $_totalPage;   
+    private $_currentPage;
     
 	public function __construct($totalItem,$currentPage = 1,$nItemOnPage = 5,$nPageShow = 5){
 		$this->_totalItem 	= $totalItem;
@@ -19,9 +19,7 @@ class Pager{
 	public function showPagination(){
         $paginationHTML 	= '';
 		if($this->_totalPage > 1){
-			$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-			// http://localhost/shop2408/phu-kien
-			// http://localhost/shop2408/phu-kien/page/2
+			$actual_link = ($_SERVER['REQUEST_SCHEME']=='http' ? "http" : "https") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 			$actual_link = explode('/page/', $actual_link)[0];
             
 			$start 	= '';
@@ -45,13 +43,13 @@ class Pager{
                 }
                 else if($this->_currentPage == $this->_totalPage){
                     $startPage 	= $this->_totalPage - $this->_nPageShow + 1;
-					$endPage 	= $this->_currentPage;
+					$endPage 	= $this->_totalPage;
                 }
 				else{
 					$startPage		= $this->_currentPage - ($this->_nPageShow-1)/2;
 					$endPage		= $this->_currentPage + ($this->_nPageShow-1)/2;
 					if($startPage < 1){
-						$endPage	= $endPage + 1; 
+						$endPage	= $endPage + 1;  //
 						$startPage 	= 1; 
 					}
 					if($endPage > $this->_totalPage){
@@ -65,10 +63,11 @@ class Pager{
 				$endPage		= $this->_totalPage;
 			}
 
-            $listPages = '';
+			$listPages = '';
+			
 			for($i = $startPage; $i <= $endPage; $i++){
 				if($i == $this->_currentPage) {
-					$listPages .= "<li><a  class='active' href='#'>".$i.'</a>';
+					$listPages .= "<li><a class='active' href='#'>".$i.'</a>';
 				}
 				else{
 					$listPages .= "<li><a href='$actual_link/page/".$i."'>".$i.'</a>';

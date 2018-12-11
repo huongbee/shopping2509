@@ -18,12 +18,15 @@ class TypeProductController extends BaseController{
         $total = count($model->selectProductByType($url));
         
         $numPageShow = 5;
-        
+
+        // print_r($_SERVER);die;
+
         /**
+         * total = 10;
          * sotranghienthi = 9;
-         * page = 10
-         * start = 6 = page - (sotranghienthi-1)/2
-         * end   = 14 = page + (sotranghienthi-1)/2
+         * page = 9
+         * start =  page - (sotranghienthi-1)/2 => 5 => 2
+         * end   =  page + (sotranghienthi-1)/2 => 13 => 10
          */
 
         $type = $model->selectNameType($url);
