@@ -7,9 +7,11 @@ class TypeProductController extends BaseController{
         $url = $_GET['url'];
         $model = new TypeProductModel();
         $products = $model->selectProductByType($url);
-        $title = ''; //write model get name type
+        $type = $model->selectNameType($url);
+        $title = $type->name;
         $data = [
-            'products'=>$products
+            'products'=>$products,
+            'type'=>$title
         ];
         return $this->loadView('type-product',$title,$data);
     }

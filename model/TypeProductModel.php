@@ -22,6 +22,15 @@ class TypeProductModel extends DBConnect{
                 WHERE u.url='$urlType'";
         return $this->loadMoreRow($sql);
     }
+
+    function selectNameType($url){
+        $sql = "SELECT name
+                FROM categories c
+                INNER JOIN page_url u
+                ON c.id_url = u.id
+                WHERE url = '$url'";
+        return $this->loadOneRow($sql);
+    }
 }
 
 // SELECT p.*, u2.url as url

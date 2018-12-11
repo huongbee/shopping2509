@@ -5,7 +5,7 @@
           <div class="col-main col-sm-9 col-xs-12 col-sm-push-3">
             <div class="shop-inner">
               <div class="page-title">
-                <h2>Apple</h2>
+                <h2>Sản phẩm: <?=$data['type']?></h2>
               </div>
 
               <div class="product-grid-area">
