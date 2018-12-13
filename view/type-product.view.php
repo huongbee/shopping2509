@@ -85,7 +85,7 @@
                     <ul class="check-box-list">
                       <?php foreach($categories as $menu):?>
                       <li>
-                        <input type="checkbox" id="type<?=$menu->id?>" name="jtvc">
+                        <input type="checkbox" id="type<?=$menu->id?>" name="jtvc" class="input-type" data-id="<?=$menu->id?>">
                         <label for="type<?=$menu->id?>">
                           <span class="button"></span> 
                           <?=$menu->name?>
@@ -230,8 +230,6 @@
                 <a class="link-all" href="shop_grid.html">All Products</a>
               </div>
             </div>
-
-
           </aside>
         </div>
       </div>
@@ -240,6 +238,27 @@
 
 <script>
   $(document).ready(function(){
-    
+    $('.input-type').click(function(){
+      var check = $(this).prop('checked')
+      var idType = $(this).attr('data-id')
+      if(check){
+        $.ajax({
+          url:'type-product.php',
+          type:'POST',
+          data:{
+            idType
+          },
+          success:function(response){ //response: server response
+            console.log(response)
+          },
+          error:function(error){
+            console.log(error.getResponseHeader())
+          }
+        })
+      } 
+      else{
+        console.log('uncheck!')
+      }
+    })
   })
 </script>
