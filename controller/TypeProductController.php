@@ -1,6 +1,7 @@
 <?php
 include_once 'BaseController.php';
 include_once 'model/TypeProductModel.php';
+include_once 'Helper/Pager.php';
 
 class TypeProductController extends BaseController{
     function getTypeProductPage(){
@@ -17,23 +18,16 @@ class TypeProductController extends BaseController{
         $products = $model->selectProductByType($url,$position,$qty);
         $total = count($model->selectProductByType($url));
         
-        $numPageShow = 5;
-
-        // print_r($_SERVER);die;
-
-        /**
-         * total = 10;
-         * sotranghienthi = 9;
-         * page = 9
-         * start =  page - (sotranghienthi-1)/2 => 5 => 2
-         * end   =  page + (sotranghienthi-1)/2 => 13 => 10
-         */
+        $numPageShow = 3;
+        $pager = new Pager($total,$page,$qty,$numPageShow);
+        $pagination = $pager->showPagination();
 
         $type = $model->selectNameType($url);
         $title = $type->name;
         $data = [
             'products'=>$products,
-            'type'=>$title
+            'type'=>$title,
+            'pagination'=>$pagination
         ];
         return $this->loadView('type-product',$title,$data);
     }

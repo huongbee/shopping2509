@@ -69,22 +69,7 @@
                 </ul>
               </div>
               <div class="pagination-area ">
-                <ul>
-                  <li>
-                    <a class="active" href="#">1</a>
-                  </li>
-                  <li>
-                    <a href="#">2</a>
-                  </li>
-                  <li>
-                    <a href="#">3</a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-angle-right"></i>
-                    </a>
-                  </li>
-                </ul>
+                <?=$data['pagination']?>
               </div>
             </div>
           </div>
