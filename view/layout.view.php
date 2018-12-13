@@ -52,6 +52,9 @@
     <!-- style CSS -->
     <link rel="stylesheet" type="text/css" href="public/css/style.css" media="all">
     <link rel="stylesheet" type="text/css" href="public/css/my-style.css" media="all">
+
+    <!-- jquery js -->
+    <script type="text/javascript" src="public/js/jquery.min.js"></script>
 </head>
 
 <body class="cms-index-index cms-home-page">
@@ -222,8 +225,8 @@
         <!-- end nav -->
 
         <?php
-    include_once "$view.view.php";
-    ?>
+        include_once "$view.view.php";
+        ?>
 
         <!-- Footer -->
 
@@ -433,8 +436,7 @@
 
     <!-- JS -->
 
-    <!-- jquery js -->
-    <script type="text/javascript" src="public/js/jquery.min.js"></script>
+    
 
     <script>
         $(document).ready(function(){

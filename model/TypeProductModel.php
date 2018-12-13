@@ -4,10 +4,13 @@ include_once 'DBConnect.php';
 class TypeProductModel extends DBConnect{
 
     function selectCategories(){
-        $sql = "SELECT c.*, u.url AS url
+        $sql = "SELECT c.*, u.url AS url, count(p.id) AS qty
                 FROM page_url u
                 INNER JOIN categories c
-                ON u.id = c.id_url";
+                ON u.id = c.id_url
+                INNER JOIN products p
+                ON c.id = p.id_type
+                GROUP BY c.id";
         return $this->loadMoreRow($sql);
     }
     function selectProductByType($urlType,$position=-1,$quantity=-1){
