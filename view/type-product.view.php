@@ -248,7 +248,7 @@
           data:{
             idType
           },
-          success:function(response){ //response: server response
+          success:function(response){         //response: server response
             console.log(response)
           },
           error:function(error){

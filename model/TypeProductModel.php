@@ -37,6 +37,14 @@ class TypeProductModel extends DBConnect{
                 WHERE url = '$url'";
         return $this->loadOneRow($sql);
     }
+    function selectProductByIdType($idType){
+        $sql = "SELECT p.*, u.url AS url
+                FROM products p
+                INNER JOIN page_url u
+                ON p.id_url = u.id
+                WHERE id_type = $idType";
+        return $this->loadMoreRow($sql);
+    }
 }
 
 // SELECT p.*, u2.url as url

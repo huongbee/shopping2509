@@ -15,12 +15,14 @@ class BaseController {
         include_once 'view/layout.view.php';
     }
 
+    function loadViewNoneLayout($view = '',$data = []){
+        include_once "view/ajax/$view.view.php";
+    }
     
     function loadErrorPage(){
         return $this->loadView('404');
     }
 }
-
 
 
 ?>

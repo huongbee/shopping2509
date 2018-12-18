@@ -33,7 +33,11 @@ class TypeProductController extends BaseController{
     }
 
     function getProductByType(){
-        echo $_POST['idType'];
+        $idType = $_POST['idType'];
+        $model = new TypeProductModel();
+        $products = $model->selectProductByIdType($idType);
+        return $this->loadViewNoneLayout('productbytype',$products);
+        //print_r($products);
     }
 }
 
