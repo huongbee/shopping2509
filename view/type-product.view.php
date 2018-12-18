@@ -248,8 +248,17 @@
           data:{
             idType
           },
-          success:function(response){         //response: server response
-            console.log(response)
+          success:function(response){         
+            //response: server response
+            $('.pagination-area').hide()
+            if($('.products-grid').hasClass('append')){
+              $('.products-grid').append(response)
+            }
+            else{
+              $('.products-grid').html(response)
+              $('.products-grid').addClass('append')
+            }
+            
           },
           error:function(error){
             console.log(error.getResponseHeader())
