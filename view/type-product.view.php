@@ -271,8 +271,8 @@
         if($('.products-grid').find('li').length==0){
           $('.products-grid').html(oldContent)
           $('.pagination-area').show()
+          $('.products-grid').removeClass('append')
         }
-        
       }
     })
   })
