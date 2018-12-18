@@ -238,6 +238,7 @@
 
 <script>
   $(document).ready(function(){
+    var oldContent = $('.products-grid').html();
     $('.input-type').click(function(){
       var check = $(this).prop('checked')
       var idType = $(this).attr('data-id')
@@ -266,7 +267,12 @@
         })
       } 
       else{
-        console.log('uncheck!')
+        $('.product-'+idType).remove()
+        if($('.products-grid').find('li').length==0){
+          $('.products-grid').html(oldContent)
+          $('.pagination-area').show()
+        }
+        
       }
     })
   })
