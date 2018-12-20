@@ -432,12 +432,7 @@
         <!-- End Footer -->
 
     </div>
-
-
     <!-- JS -->
-
-    
-
     <script>
         $(document).ready(function(){
             $('.mega-menu-category').hide()
@@ -498,9 +493,26 @@
                     spinner: "spinner4"
                 });
         });
+
+        $('.add-to-cart-mt').click(function(){
+            var idSP = $(this).attr('data-id')
+            $.ajax({
+                url:"shopping-cart.php",
+                data:{
+                    idsanpham:idSP,
+                    soluong: 1
+                },
+                type:'POST',
+                success:function(res){
+                    console.log(res)
+                },
+                error:function(err){
+                    console.log(err)
+                }
+            })
+        })
+
     </script>
-
-
 
 </body>
 

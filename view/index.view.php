@@ -76,7 +76,7 @@
                                       <img class="hover-img" src="public/images/products-images/<?=$product->image?>" alt="html template">
                                     </figure>
                                   </a>
-                                  <button type="button" class="add-to-cart-mt">
+                                  <button type="button" class="add-to-cart-mt" data-id="<?=$product->id?>">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span> Add to Cart</span>
                                   </button>
