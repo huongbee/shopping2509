@@ -15,6 +15,31 @@ class Cart{
 			$this->promtPrice = $oldCart->promtPrice;
 		}
 	}
+	/**
+	 * @param $item : product in db
+	 * @param $qty 
+	 * 
+	 	{
+			items : [
+						12=>[
+							item:  $item, // 1sp:10, km:0
+							qty: 2,
+							price: 20,
+							discountPrice: 20
+						],
+						15=>[
+							item:  $item, // 1sp:20, km:15
+							qty: 4,
+							price: 80,
+							discountPrice: 60
+						]
+					],
+			totalQty: 6,
+			totalPrice : 100,
+			promtPrice: 80
+		}
+	 */
+
 	
 	public function add($item, $qty=1){ 
 		if($item->promotion_price == 0){
