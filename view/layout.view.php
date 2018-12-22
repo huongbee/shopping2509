@@ -432,6 +432,30 @@
         <!-- End Footer -->
 
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 id="message-cart">
+                    ....
+                </h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tiếp tục mua sắm</button>
+                <button type="button" class="btn btn-primary">
+                    <a href="shopping-cart.php" style="color:#fff">Xem giỏ hàng</a>
+                </button>
+            </div>
+            </div>
+        </div>
+    </div>
     <!-- JS -->
     <script>
         $(document).ready(function(){
@@ -503,8 +527,10 @@
                     soluong: 1
                 },
                 type:'POST',
+                dataType:'JSON',
                 success:function(res){
-                    console.log(res)
+                    $('#message-cart').html(res.message)
+                    $('#exampleModal').modal('show')
                 },
                 error:function(err){
                     console.log(err)

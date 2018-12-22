@@ -12,7 +12,7 @@
                 <ul class="products-grid">
                   <?php foreach($data['products'] as $product):?>
                   <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
-                    <div class="product-item">
+                    <div class="product-item" style="height:350px">
                       <div class="item-inner">
                         <div class="product-thumbnail">
                           <?php if($product->promotion_price!=0):?>

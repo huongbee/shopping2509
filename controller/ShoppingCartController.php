@@ -20,8 +20,11 @@ class ShoppingCartController extends BaseController{
             $cart = new Cart($oldCart);
             $cart->add($product, $qty);
             $_SESSION['cart'] = $cart;
-            print_r($_SESSION['cart']);
-
+            // print_r($_SESSION['cart']);
+            echo json_encode([
+                'status'=>1,
+                'message'=> "Sản phẩm ".$product->name." đã được thêm vào giỏ hàng"
+            ]);
         }
         else{
             echo json_encode([
