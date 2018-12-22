@@ -133,8 +133,14 @@
                                                 <i class="fa fa-shopping-cart"></i>
                                             </div>
                                             <div class="shoppingcart-inner hidden-xs">
-                                                <span class="cart-title">Shopping Cart</span>
-                                                <span class="cart-total">4 Item(s): $520.00</span>
+                                                <span class="cart-title">Giỏ hàng của bạn</span>
+                                                <span class="cart-total">
+                                                   <span>
+                                                   <?=$cartInit->totalQty?> 
+                                                   </span>  sản phẩm
+                                                    <!-- -
+                                                    <?=number_format($cartInit->totalPrice)?> vnd -->
+                                                </span>
                                             </div>
                                         </a>
                                     </div>
@@ -446,6 +452,7 @@
                 <h5 id="message-cart">
                     ....
                 </h5>
+                <div class="img-product"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tiếp tục mua sắm</button>
@@ -520,20 +527,27 @@
 
         $('.add-to-cart-mt').click(function(){
             var idSP = $(this).attr('data-id')
+            var qty = 1
             $.ajax({
                 url:"shopping-cart.php",
                 data:{
                     idsanpham:idSP,
-                    soluong: 1
+                    soluong: qty
                 },
                 type:'POST',
                 dataType:'JSON',
                 success:function(res){
+
+                    if(res.status==1){
+                        $('.img-product').html(`<img src='public/images/products-images/${res.image}'  width='150px' >`)
+                    }
+                    var oldQty = parseInt($('.cart-total span').text())
+                    $('.cart-total span').text(oldQty + qty)
                     $('#message-cart').html(res.message)
                     $('#exampleModal').modal('show')
                 },
                 error:function(err){
-                    console.log(err)
+                    console.log(err.responseText)
                 }
             })
         })
