@@ -14,49 +14,43 @@
                 <table class="table table-bordered cart_summary">
                   <thead>
                     <tr>
-                      <th class="cart_product">Product</th>
-                      <th>Description</th>
-                      <th>Avail.</th>
-                      <th>Unit price</th>
-                      <th>Qty</th>
-                      <th>Total</th>
+                      <th class="cart_product">Hình ảnh</th>
+                      <th>Tên sản phẩm</th>
+                      <th>Đơn giá / Giá khuyến mãi</th>
+                      <th>Số lượng</th>
+                      <th>Tổng tiền</th>
                       <th  class="action"><i class="fa fa-trash-o"></i></th>
                     </tr>
                   </thead>
                   <tbody>
+                    
                     <tr>
-                      <td class="cart_product"><a href="#"><img src="public/images/products/img01.jpg" alt="Product"></a></td>
-                      <td class="cart_description"><p class="product-name"><a href="#">Ipsums Dolors Untra </a></p>
+                      <td class="cart_product">
+                        <a href="#">
+                          <img src="public/images/products/img01.jpg" alt="Product">
+                        </a></td>
+                      <td class="cart_description">
+                        <p class="product-name">
+                          <a href="#">Ipsums Dolors Untra </a>
+                        </p>
                         <small><a href="#">Color : Red</a></small><br>
                         <small><a href="#">Size : M</a></small></td>
-                      <td class="availability in-stock"><span class="label">In stock</span></td>
-                      <td class="price"><span>$49.88</span></td>
-                      <td class="qty"><input class="form-control input-sm" type="text" value="1"></td>
-                      <td class="price"><span>$49.88</span></td>
+                      <td class="price">
+                        <span>$49.88</span>
+                        <br>
+                        <span style="color:#000"><del>$49.88</del></span>
+                      </td>
+                      <td class="qty">
+                        <input class="form-control input-sm" type="text" value="1">
+                      </td>
+                      <td class="price">
+                      <span>$49.88</span>
+                        <br>
+                        <span style="color:#000"><del>$49.88</del></span>
+                      </td>
                       <td class="action"><a href="#"><i class="icon-close"></i></a></td>
                     </tr>
-                    <tr>
-                      <td class="cart_product"><a href="#"><img src="public/images/products/img02.jpg" alt="Product"></a></td>
-                      <td class="cart_description"><p class="product-name"><a href="#">Ipsums Dolors Untra </a></p>
-                        <small><a href="#">Color : Green</a></small><br>
-                        <small><a href="#">Size : XL</a></small></td>
-                      <td class="availability out-of-stock"><span class="label">No stock</span></td>
-                      <td class="price"><span>$00.00</span></td>
-                      <td class="qty"><input class="form-control input-sm" type="text" value="0"></td>
-                      <td class="price"><span>00.00</span></td>
-                      <td class="action"><a href="#"><i class="icon-close"></i></a></td>
-                    </tr>
-                    <tr>
-                      <td class="cart_product"><a href="#"><img src="public/images/products/img03.jpg" alt="Product"></a></td>
-                      <td class="cart_description"><p class="product-name"><a href="#">Ipsums Dolors Untra </a></p>
-                        <small><a href="#">Color : Blue</a></small><br>
-                        <small><a href="#">Size : S</a></small></td>
-                      <td class="availability in-stock"><span class="label">In stock</span></td>
-                      <td class="price"><span>$99.00</span></td>
-                      <td class="qty"><input class="form-control input-sm" type="text" value="2"></td>
-                      <td class="price"><span>$188.00</span></td>
-                      <td class="action"><a href="#"><i class="icon-close"></i></a></td>
-                    </tr>
+                   
                   </tbody>
                   <tfoot>
                     <tr>

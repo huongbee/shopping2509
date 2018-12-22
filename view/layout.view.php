@@ -527,7 +527,11 @@
 
         $('.add-to-cart-mt').click(function(){
             var idSP = $(this).attr('data-id')
-            var qty = 1
+            var qty=1 
+            if($(this).hasClass('pro-add-to-cart')){
+                qty = $('#qty').val()
+            }
+            console.log(qty)
             $.ajax({
                 url:"shopping-cart.php",
                 data:{

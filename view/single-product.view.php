@@ -43,7 +43,7 @@
                     <div class="cart-plus-minus">
                       <label for="qty">Quantity:</label>
                       <div class="numbers-row">
-                        <div   class="dec qtybutton">
+                        <div onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) && qty>1) result.value--;return false;"  class="dec qtybutton">
                           <i class="fa fa-minus">&nbsp;</i>
                         </div>
                         <input type="text" class="qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
@@ -53,7 +53,8 @@
                         </div>
                       </div>
                     </div>
-                    <button class="button pro-add-to-cart" title="Add to Cart" type="button">
+                    <button class="button add-to-cart-mt pro-add-to-cart" title="Add to Cart" type="button" data-id="<?=$data['product']->id?>" 
+                    style="line-height:20px;position:inherit; width:30%">
                       <span>
                         <i class="fa fa-shopping-cart"></i> Add to Cart</span>
                     </button>

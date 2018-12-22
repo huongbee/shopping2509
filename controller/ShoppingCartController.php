@@ -6,7 +6,12 @@ include_once 'Helper/Cart.php';
 
 class ShoppingCartController extends BaseController{
     function getShoppingCartPage(){
-        return $this->loadView('shopping-cart');
+        $oldCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
+        $cart = new Cart($oldCart);
+        $data = [
+            'cart'=>$cart
+        ];
+        return $this->loadView('shopping-cart','Giỏ hàng',$data);
     }
 
     function addToCart(){

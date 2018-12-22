@@ -11,6 +11,7 @@ class BaseController {
      * @param array $data=[]
      * @return null 
      */
+    
     function loadView(string $view='index', string $title='Shop 2509', array $data=[]){
         $model = new TypeProductModel;
         $categories = $model->selectCategories();
