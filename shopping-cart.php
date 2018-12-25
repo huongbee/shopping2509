@@ -5,7 +5,13 @@ $c = new ShoppingCartController;
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     //ajax
-    return $c->addToCart();
+    if(isset($_POST['action']) && $_POST['action']=='delete' ){
+        return $c->deleteItemCart();
+    }
+    if(isset($_POST['action']) && $_POST['action']=='update' ){
+        return $c->updateItemCart();
+    }
+    else return $c->addToCart();
 }
 return $c->getShoppingCartPage();
 

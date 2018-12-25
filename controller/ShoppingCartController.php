@@ -8,6 +8,7 @@ class ShoppingCartController extends BaseController{
     function getShoppingCartPage(){
         $oldCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
         $cart = new Cart($oldCart);
+        // print_r($cart);die;
         $data = [
             'cart'=>$cart
         ];
@@ -38,6 +39,26 @@ class ShoppingCartController extends BaseController{
                 'message'=>'Product not found!'
             ]);
         }
+    }
+    function deleteItemCart(){
+        $id = $_POST['idSP'];
+        $oldCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
+        $cart = new Cart($oldCart);
+        if(array_key_exists($id,$cart->items)){
+            $cart->removeItem($id);
+            $_SESSION['cart'] = $cart;
+            echo json_encode([
+                'status'=>1,
+                'message'=> "Updated!"
+            ]);
+        }
+        else{
+            echo json_encode([
+                'status'=>0,
+                'message'=> "Can not find product in your cart."
+            ]);
+        }
+        
     }
 }
 

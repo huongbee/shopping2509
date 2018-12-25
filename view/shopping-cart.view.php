@@ -24,43 +24,70 @@
                   </thead>
                   <tbody>
                     
+                  <?php foreach ($data['cart']->items as $key => $value):?>
                     <tr>
-                      <td class="cart_product">
-                        <a href="#">
-                          <img src="public/images/products/img01.jpg" alt="Product">
-                        </a></td>
-                      <td class="cart_description">
-                        <p class="product-name">
-                          <a href="#">Ipsums Dolors Untra </a>
-                        </p>
-                        <small><a href="#">Color : Red</a></small><br>
-                        <small><a href="#">Size : M</a></small></td>
-                      <td class="price">
-                        <span>$49.88</span>
-                        <br>
-                        <span style="color:#000"><del>$49.88</del></span>
-                      </td>
-                      <td class="qty">
-                        <input class="form-control input-sm" type="text" value="1">
-                      </td>
-                      <td class="price">
-                      <span>$49.88</span>
-                        <br>
-                        <span style="color:#000"><del>$49.88</del></span>
-                      </td>
-                      <td class="action"><a href="#"><i class="icon-close"></i></a></td>
+                        <td class="cart_product">
+                          <a href="#">
+                            <img src="public/images/products-images/<?=$value['item']->image?>" alt="<?=$value['item']->name?>">
+                          </a>
+                        </td>
+                        <td class="cart_description">
+                          <p class="product-name">
+                            <a href="#"><?=$value['item']->name?></a>
+                          </p>
+                        </td>
+                        <td class="price">
+                          <?php if($value['item']->price != $value['item']->promotion_price ):?>
+                            <span  style="color:#000">
+                              <del>
+                                <?=number_format($value['item']->price)?>
+                              </del>
+                            </span>
+                            <br>
+                            <span>
+                                <?=number_format($value['item']->promotion_price)?>
+                            </span>
+                            <?php else:?>
+                            <span>
+                                <?=number_format($value['item']->promotion_price)?>
+                            </span>
+                            <?php endif?>
+                        </td>
+                        <td class="qty">
+                          <input class="form-control input-sm" type="text" value="<?=$value['qty']?>">
+                        </td>
+                        <td class="price">
+                        <?php if($value['item']->price != $value['item']->promotion_price ):?>
+                          <span  style="color:#000">
+                            <del>
+                              <?=number_format($value['price'])?>
+                            </del>
+                          </span>
+                          <br>
+                          <span>
+                          <?=number_format($value['discountPrice'])?>
+                          </span>
+                          <?php else:?>
+                          <span>
+                          <?=number_format($value['price'])?>
+                          </span>
+                          <?php endif?>
+                        </td>
+                        <td class="action">
+                          <a href="#" class="delete-cart" data-id="<?=$value['item']->id?>"><i class="icon-close"></i></a>
+                        </td>
                     </tr>
-                   
+                  <?php endforeach?>
                   </tbody>
                   <tfoot>
                     <tr>
                       <td colspan="2" rowspan="2"></td>
-                      <td colspan="3">Total products (tax incl.)</td>
-                      <td colspan="2">$237.88 </td>
+                      <td colspan="3">Tổng tiền</td>
+                      <td colspan="2"><?=number_format($data['cart']->totalPrice)?></td>
                     </tr>
                     <tr>
-                      <td colspan="3"><strong>Total</strong></td>
-                      <td colspan="2"><strong>$237.88 </strong></td>
+                      <td colspan="3"><strong>Thanh toán</strong></td>
+                      <td colspan="2"><strong><?=number_format($data['cart']->promtPrice)?></strong></td>
                     </tr>
                   </tfoot>
                 </table>
@@ -72,3 +99,25 @@
       </div>
     </div>
   </section>
+  <script>
+  $(document).ready(function(){
+    $('.delete-cart').click(function(){
+      var id = $(this).attr('data-id')
+      $.ajax({
+        url:'shopping-cart.php',
+        type:'POST',
+        data:{
+          idSP : id,
+          action:'delete'
+        },
+        success:function(res){
+          console.log(res)
+        },
+        error:function(err){
+          console.log(err)
+        }
+      })
+    })
+  })
+  
+  </script>

@@ -536,7 +536,8 @@
                 url:"shopping-cart.php",
                 data:{
                     idsanpham:idSP,
-                    soluong: qty
+                    soluong: qty,
+                    action: 'add'
                 },
                 type:'POST',
                 dataType:'JSON',
