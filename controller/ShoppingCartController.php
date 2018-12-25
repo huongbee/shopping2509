@@ -60,6 +60,38 @@ class ShoppingCartController extends BaseController{
         }
         
     }
+
+    function updateItemCart(){
+        $qty = isset($_POST['soluong']) ? (int)$_POST['soluong'] : 1;
+        $id = $_POST['idSP'];
+
+        $model = new ShoppingCartModel();
+        $product = $model->findProductById($id);
+        if($product){
+            //update 
+            $oldCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
+            $cart = new Cart($oldCart);
+            $cart->update($product, $qty);
+            $_SESSION['cart'] = $cart;
+            // print_r($_SESSION['cart']);
+            echo json_encode([
+                'status'=>1,
+                'message'=> 'Updated!',
+                'data'=>[
+                    'price'=>number_format($cart->items[$id]['price']),
+                    'discountPrice'=>number_format($cart->items[$id]['discountPrice']),
+                    'totalPrice'=>number_format($cart->totalPrice),
+                    'promtPrice'=>number_format($cart->promtPrice)
+                ]
+            ]);
+        }
+        else{
+            echo json_encode([
+                'status'=>0,
+                'message'=>'Product not found!'
+            ]);
+        }
+    }
 }
 
 ?>

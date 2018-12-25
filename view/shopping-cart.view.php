@@ -25,7 +25,7 @@
                   <tbody>
                     
                   <?php foreach ($data['cart']->items as $key => $value):?>
-                    <tr>
+                    <tr id="product-<?=$key?>">
                         <td class="cart_product">
                           <a href="#">
                             <img src="public/images/products-images/<?=$value['item']->image?>" alt="<?=$value['item']->name?>">
@@ -54,27 +54,30 @@
                             <?php endif?>
                         </td>
                         <td class="qty">
-                          <input class="form-control input-sm" type="text" value="<?=$value['qty']?>">
+                          <label for="">
+                            <input class="form-control input-sm" type="text" value="<?=$value['qty']?>" id="txtSoluong-<?=$key?>">
+                          <button style="max-width: 64px;margin-top:2px;padding:5px 7px" class="btn btn-default btn-sm btn-update-cart" 
+                          data-id="<?=$value['item']->id?>">Cập nhật</button></label>
                         </td>
                         <td class="price">
                         <?php if($value['item']->price != $value['item']->promotion_price ):?>
                           <span  style="color:#000">
-                            <del>
+                            <del id="price-<?=$key?>">
                               <?=number_format($value['price'])?>
                             </del>
                           </span>
                           <br>
-                          <span>
-                          <?=number_format($value['discountPrice'])?>
+                          <span id="discountPrice-<?=$key?>">
+                            <?=number_format($value['discountPrice'])?>
                           </span>
                           <?php else:?>
-                          <span>
+                          <span id="price-<?=$key?>">
                           <?=number_format($value['price'])?>
                           </span>
                           <?php endif?>
                         </td>
                         <td class="action">
-                          <a href="#" class="delete-cart" data-id="<?=$value['item']->id?>"><i class="icon-close"></i></a>
+                          <a class="delete-cart" data-id="<?=$value['item']->id?>"><i class="icon-close"></i></a>
                         </td>
                     </tr>
                   <?php endforeach?>
@@ -83,11 +86,11 @@
                     <tr>
                       <td colspan="2" rowspan="2"></td>
                       <td colspan="3">Tổng tiền</td>
-                      <td colspan="2"><?=number_format($data['cart']->totalPrice)?></td>
+                      <td colspan="2" class="totalPrice"><?=number_format($data['cart']->totalPrice)?></td>
                     </tr>
                     <tr>
                       <td colspan="3"><strong>Thanh toán</strong></td>
-                      <td colspan="2"><strong><?=number_format($data['cart']->promtPrice)?></strong></td>
+                      <td colspan="2"><strong class="promtPrice"><?=number_format($data['cart']->promtPrice)?></strong></td>
                     </tr>
                   </tfoot>
                 </table>
@@ -110,13 +113,51 @@
           idSP : id,
           action:'delete'
         },
+        dataType:'json',
         success:function(res){
-          console.log(res)
+          if(res.status==1){
+            $('#product-'+id).hide(500)
+          }
+          // else alert(res.message)
         },
         error:function(err){
           console.log(err)
         }
       })
+    })
+    $('.btn-update-cart').click(function(){
+      var id = $(this).attr('data-id')
+      var soluong = parseInt($('#txtSoluong-'+id).val())
+      if(soluong<=0 || isNaN(soluong) ||  soluong=='' ){
+        alert('Số lượng không đúng!');
+        $('#txtSoluong-'+id).val('')
+        $('#txtSoluong-'+id).focus();
+        return false;
+      }
+      else{
+        $.ajax({
+          url:'shopping-cart.php',
+          type:'POST',
+          data:{
+            idSP : id,
+            soluong:soluong,
+            action:'update'
+          },
+          dataType:'json',
+          success:function(res){
+            if(res.status==1){
+              $('.totalPrice').html(res.data.totalPrice)
+              $('.promtPrice').html(res.data.promtPrice)
+              $('#price-'+id).html(res.data.price)
+              $('#discountPrice-'+id).html(res.data.discountPrice)
+            }
+          },
+          error:function(err){
+            console.log(err)
+          }
+        })
+      }
+      
     })
   })
   
