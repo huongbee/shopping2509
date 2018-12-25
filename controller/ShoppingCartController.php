@@ -96,6 +96,11 @@ class ShoppingCartController extends BaseController{
             ]);
         }
     }
+
+    //save 1 new customer => return id customer 
+    //save new bill => return id bill
+    //save bill_detail
+    
 }
 
 ?>
