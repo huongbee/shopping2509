@@ -117,6 +117,8 @@
         success:function(res){
           if(res.status==1){
             $('#product-'+id).hide(500)
+            $('.totalPrice').html(res.data.totalPrice)
+            $('.promtPrice').html(res.data.promtPrice)
           }
           // else alert(res.message)
         },

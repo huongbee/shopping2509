@@ -49,7 +49,11 @@ class ShoppingCartController extends BaseController{
             $_SESSION['cart'] = $cart;
             echo json_encode([
                 'status'=>1,
-                'message'=> "Updated!"
+                'message'=> "Updated!",
+                'data'=>[
+                    'totalPrice'=>number_format($cart->totalPrice),
+                    'promtPrice'=>number_format($cart->promtPrice)
+                ]
             ]);
         }
         else{
